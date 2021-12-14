@@ -196,14 +196,14 @@ def median(numlist):
     if l == 0:
         return float('nan')
     if l%2 == 0:
-        return (s[l/2] + s[l/2-1]) / 2.0
+        return (s[l//2] + s[l//2-1]) / 2
     else:
-        return float(s[l/2])
+        return float(s[l//2])
 
 def convolve(signal, filter_width):
     # smooth signal with a flat scanning window of filter_width
     filter_width = float(filter_width)
-    overhang = int((filter_width-1) / 2)
+    overhang = int((filter_width-1) // 2)
     window = deque([])
     result = []
     for i in signal + overhang * [0]:
