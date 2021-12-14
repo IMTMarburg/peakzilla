@@ -196,14 +196,14 @@ def median(numlist):
     if l == 0:
         return float('nan')
     if l%2 == 0:
-        return (s[l//2] + s[l//2-1]) / 2
+        return (s[l//2] + s[l//2-1]) / 2.0
     else:
         return float(s[l//2])
 
 def convolve(signal, filter_width):
     # smooth signal with a flat scanning window of filter_width
     filter_width = float(filter_width)
-    overhang = int((filter_width-1) // 2)
+    overhang = int((filter_width-1) / 2)
     window = deque([])
     result = []
     for i in signal + overhang * [0]:
@@ -429,6 +429,7 @@ class PeakShiftModel:
         # ceate list of top peaks
         for i in range(n_top_peaks):
             top_shifts.append(self.peak_shifts[i][1])
+
         self.peak_shift = int(median(top_shifts))
         # peak size is 2 * shift size + 1
         self.peak_size = self.peak_shift * 2 + 1
@@ -559,7 +560,7 @@ class PeakContainer:
         self.ip_tags = ip_tags
         self.control_tags = control_tags
         self.peak_size = peak_size
-        self.peak_shift = (peak_size - 1) / 2
+        self.peak_shift = (peak_size - 1) // 2
         self.score_threshold = 10
         self.plus_model = plus_model
         self.minus_model = minus_model
